@@ -9,8 +9,11 @@ class UserController extends Controller
 {
     public function profile(User $user)
     {
+        $posts = $user->posts()->paginate(5);
+
         return view('users.profile', [
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts,
         ]);
     }
 }

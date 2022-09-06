@@ -30,7 +30,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        @if(Auth::check())
+                            <a href="{{ route('home') }}" class="nav-link">Home</a>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -49,6 +51,7 @@
                                 </li>
                             @endif
                         @else
+                        <a href="{{ route('posts.create') }}" class="nav-link">Create Post</a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ auth()->user()->username }}
