@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Models\Category;
 use App\Services\PostServices;
 use Illuminate\Support\Facades\Storage;
-
-use function PHPUnit\Framework\isNull;
 
 class PostController extends Controller
 {
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(PostRequest $request, PostServices $postServices)
@@ -27,9 +28,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('owner', $post);
+        $categories = Category::all();
 
         return view('posts.edit', [
             'post' => $post,
+            'categories' => $categories,
         ]);
     }
 

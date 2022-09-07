@@ -29,6 +29,27 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="category" class="col-md-4 col-form-label text-md-end">Category</label>
+
+                                <div class="col-md-6">
+                                    <select name="category_id" id="category_id" class="form-control" required>
+                                        <option value="0">--- SELECT CATEGORY ---</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                @if ($category->id == old('category_id')) selected @endif>{{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('category')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="content" class="col-md-4 col-form-label text-md-end">Content</label>
 
                                 <div class="col-md-6">

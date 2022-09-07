@@ -46,6 +46,7 @@
 
                         <div class="card">
                             <div class="card-body">
+                                <p><b>Category: </b>{{ $post->category->name }}</p>
                                 @if ($post->image() !== null)
                                     <img src="{{ $post->image() }}" class="img-fluid">
                                 @endif

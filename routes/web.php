@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -26,32 +27,29 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    // Route::get('/posts/create', [
-    //     PostController::class, 'create'
-    // ])->name('posts.create');
+    // Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 
-    // Route::post('/posts', [
-    //     PostController::class, 'store'
-    // ])->name('posts.store');
+    // Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
-    // Route::get('/posts/{post:slug}/edit', [
-    //     PostController::class, 'edit'
-    // ])->name('posts.edit');
+    // Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
 
-    // Route::patch('/posts/{post:slug}/update', [
-    //     PostController::class, 'update'
-    // ])->name('posts.update');
+    // Route::patch('/posts/{post:slug}/update', [PostController::class, 'update'])->name('posts.update');
 
-    // Route::get('/posts/{post:slug}', [
-    //     PostController::class, 'show'
-    // ])->name('posts.show');
+    // Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
-    // Route::delete('/posts/{post:slug}/delete', [
-    //     PostController::class, 'destroy'
-    // ])->name('posts.destroy');
+    // Route::delete('/posts/{post:slug}/delete', [PostController::class, 'destroy'])->name('posts.destroy');
 
     Route::resource('posts', PostController::class)->except('index');
+    Route::resource('/categories', CategoryController::class)->except('show');
 });
 
 
 Route::get('users/{user:username}', [UserController::class, 'profile'])->name('users.profile');
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+
+
+// Route::get('/tags/{tag}', [PostController::class, 'tag'])->name('tag');

@@ -26,6 +26,7 @@ class PostRequest extends FormRequest
         $validation = [
             'title' => ['required', 'max:255'],
             'content' => ['required'],
+            'category_id' => ['required', 'numeric'],
             'image' => ['image', 'mimes:png,jpg,jpeg,svg,gif', 'max:2048', 'nullable'],
         ];
 
