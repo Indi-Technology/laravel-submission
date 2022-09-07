@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('posts', PostController::class)->except('index');
     Route::resource('/categories', CategoryController::class)->except('show');
+    Route::resource('/tags', TagController::class)->except('create');
 });
 
 
@@ -49,7 +51,3 @@ Route::get('users/{user:username}', [UserController::class, 'profile'])->name('u
 Route::get('/about', function () {
     return view('about');
 });
-
-
-
-// Route::get('/tags/{tag}', [PostController::class, 'tag'])->name('tag');

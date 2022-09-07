@@ -17,11 +17,7 @@
                     @forelse ($posts as $post)
                         <div class="card">
                             <div class="card-body">
-                                @if ($post->image() !== null)
-                                    <img src="{{ $post->image() }}" class="img-fluid">
-                                @endif
                                 <h5 class="card-title">{{ $post->title }} by {{ $post->user->username }}</h5>
-                                <p class="card-text">{{ $post->content }}</p>
                                 <a href="{{ route('posts.show', $post->slug) }}" class="btn btn-primary">Read More</a>
                             </div>
                         </div><br>

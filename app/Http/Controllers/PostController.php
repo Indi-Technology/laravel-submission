@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Post;
-use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Services\PostServices;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -13,8 +14,10 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
         return view('posts.create', [
             'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -29,10 +32,12 @@ class PostController extends Controller
     {
         $this->authorize('owner', $post);
         $categories = Category::all();
+        $tags = Tag::all();
 
         return view('posts.edit', [
             'post' => $post,
             'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 

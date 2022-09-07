@@ -52,6 +52,7 @@
                             @endif
                         @else
                         <a href="{{ route('categories.index') }}" class="nav-link">Categories</a>
+                        <a href="{{ route('tags.index') }}" class="nav-link">Tags</a>
                         <a href="{{ route('posts.create') }}" class="nav-link">Create Post</a>
                         <a href="{{ url('/about') }}" class="nav-link">About Faizah</a>
                             <li class="nav-item dropdown">

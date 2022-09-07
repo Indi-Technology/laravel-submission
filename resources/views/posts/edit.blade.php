@@ -12,6 +12,7 @@
                             @csrf
                             @method('PATCH')
 
+                            {{-- title --}}
                             <div class="row mb-3">
                                 <label for="title"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Title') }}</label>
@@ -29,6 +30,7 @@
                                 </div>
                             </div>
 
+                            {{-- category --}}
                             <div class="row mb-3">
                                 <label for="category" class="col-md-4 col-form-label text-md-end">Category</label>
 
@@ -49,6 +51,25 @@
                                 </div>
                             </div>
 
+                            {{-- tag --}}
+                            <div class="row mb-3">
+                                <label for="tags" class="col-md-4 col-form-label text-md-end">Tag</label>
+                                <div class="col-md-6">
+                                    <select name="tags" id="tags" class="form-control @error('tags') is-invalid @enderror" required>
+                                        <option value="">--- SELECT TAG ---</option>
+                                        @foreach ($tags as $tag)
+                                        <option value="{{ $tag->id }}" @if ($tag->id == old('tags')) selected @endif>{{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('tags')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            {{-- content --}}
                             <div class="row mb-3">
                                 <label for="content"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Content') }}</label>
@@ -67,6 +88,7 @@
                                 </div>
                             </div>
 
+                            {{-- image --}}
                             <div class="row mb-3">
                                 <label for="image" class="col-md-4 col-form-label text-md-end">Image</label>
 
@@ -83,6 +105,7 @@
                                 </div>
                             </div>
 
+                            {{-- button --}}
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">Update</button>
